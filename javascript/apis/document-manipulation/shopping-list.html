@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping list example</title>
     <style>
       li {
@@ -17,21 +17,48 @@
     </style>
   </head>
   <body>
-
     <h1>My shopping list</h1>
 
     <form>
       <label for="item">Enter a new item:</label>
-      <input type="text" name="item" id="item">
+      <input type="text" name="item" id="item" />
       <button>Add item</button>
     </form>
 
-    <ul>
-
-    </ul>
+    <ul></ul>
 
     <script>
+      // Create three variables that hold references to the list (<ul>), <input>, and <button> elements.
+      const ulList = document.querySelector("ul");
+      const inPut = document.querySelector("input");
+      const btn = document.querySelector("button");
+      //
 
+      // Create a function that will run in response to the button being clicked.
+      //Continue by storing the current value of the input in a variable.
+      btn.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const myItem = inPut.value;
+        inPut.value = "";
+
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        const listBtn = document.createElement("button");
+
+        span.textContent = inPut;
+
+        li.appendChild(span);
+        span.textContent = myItem;
+        li.appendChild(listBtn);
+        listBtn.textContent = "Delete";
+        ulList.appendChild(li);
+
+        listBtn.addEventListener("click", () => {
+          ulList.removeChild(li);
+        });
+        inPut.focus();
+      });
     </script>
   </body>
 </html>
